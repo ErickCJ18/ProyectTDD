@@ -55,6 +55,13 @@ public class MaquinaCafe
         return null;
     }
 
+    public String getInfoCafetera() {
+        if (cafe == null) {
+            return "No hay Cafetera configurada";
+        }
+        return "Marca: " + cafe.getMarca() + ", Modelo: " + cafe.getModelo();
+    }
+
     public String getVasoDeCafe(Vaso vaso, int cantidadVasos, int cantidadDeAzucar) {
         if (!vaso.hasVasos(cantidadVasos)) {
             return "No hay Vasos";
