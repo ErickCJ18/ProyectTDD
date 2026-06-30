@@ -16,7 +16,7 @@ public class TestMaquinaCafe {
 
     @Before
     public void setUp() {
-        cafetera      = new Cafetera(50);
+        cafetera      = new Cafetera(50, "Nespresso", "Vertuo Pop");
         vasosPequeno  = new Vaso(5, 10);
         vasosMediano  = new Vaso(5, 20);
         vasosGrande   = new Vaso(5, 30);
@@ -106,5 +106,26 @@ public class TestMaquinaCafe {
         MaquinaCafe.getVasoDeCafe(vaso, 1, 3);
         int resultado = MaquinaCafe.getAzucarero().getCantidadDeAzucar();
         assertEquals(17, resultado);
+    }
+
+    @Test
+    public void deberiaDevolverInfoDeLaCafetera() {
+        String resultado = MaquinaCafe.getInfoCafetera();
+        assertEquals("Marca: Nespresso, Modelo: Vertuo Pop", resultado);
+    }
+
+    @Test
+    public void deberiaDevolverInfoActualizadaTrasSetters() {
+        cafetera.setMarca("DeLonghi");
+        cafetera.setModelo("Dedica EC685");
+        String resultado = MaquinaCafe.getInfoCafetera();
+        assertEquals("Marca: DeLonghi, Modelo: Dedica EC685", resultado);
+    }
+
+    @Test
+    public void deberiaDevolverMensajeSiNohayCAfetera() {
+        MaquinaCafe mdc = new MaquinaCafe();
+        String resultado = mdc.getInfoCafetera();
+        assertEquals("No hay Cafetera configurada", resultado);
     }
 }
